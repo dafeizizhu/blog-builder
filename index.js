@@ -17,7 +17,7 @@ handler.on('error', err => {
 
 handler.on('push', evt => {
   console.log('Recieve a push event')
-  runCommand('sh', ['./auto_build.sh'], txt => {
+  runCommand('sh', ['./auto-build.sh'], txt => {
     console.log(txt)
   })
 })
