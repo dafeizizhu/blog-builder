@@ -17,7 +17,7 @@ handler.on('error', err => {
 
 handler.on('push', evt => {
   console.log('Recieve a push event')
-  runCommand('sh', ['./auto-build.sh'], txt => {
+  runCommand('sh', [path.join(__dirname, './auto-build.sh')], txt => {
     console.log(txt)
   })
 })
@@ -26,5 +26,6 @@ function runCommand(cmd, args, callback) {
   var child = spawn(cmd, args)
   var resp = ''
   child.stdout.on('data', buffer => resp += buffer.toString())
+  child.stderr.on('data', buffer => resp += buffer.toString())
   child.stdout.on('end', () => callback(resp))
 }
